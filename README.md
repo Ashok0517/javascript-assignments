@@ -15,7 +15,7 @@
 
 ## 🌐 Live Demo
 
-*URL:* https://ashok0517.github.io/javascript-assignments/run.html
+*URL:* https://ashok0517.github.io/javascript-assignments/index.html
 
 > Open the link and click any button to run an assignment in your browser.
 
