@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JavaScript Assignments Runner</title>
+<style>
+  body{font-family:system-ui,sans-serif;max-width:820px;margin:0 auto;padding:20px;background:#f4f6fb;color:#1b2140}
+  h1{font-size:1.5rem}
+  .btns{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+  button{padding:10px 16px;border:0;border-radius:8px;background:#3b4cca;color:#fff;font-size:1rem;cursor:pointer}
+  button.cap{background:#d9480f}
+  button.clr{background:#555}
+  pre{background:#0f1424;color:#7CFFB2;padding:16px;border-radius:10px;min-height:260px;overflow:auto;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<h1>JavaScript Assignments</h1>
+<p>Click a button to run the assignment. The output shows below and also in the browser console (press F12).</p>
+<div class="btns">
+  <button data-f="assignment1.js">Assignment 1</button>
+  <button data-f="assignment2.js">Assignment 2</button>
+  <button data-f="assignment3.js">Assignment 3</button>
+  <button data-f="assignment4.js">Assignment 4</button>
+  <button data-f="assignment5.js">Assignment 5</button>
+  <button data-f="assignment6.js">Assignment 6</button>
+  <button data-f="capstone.js" class="cap">Capstone Project</button>
+  <button class="clr" id="clear">Clear</button>
+</div>
+<pre id="out">Output will appear here...</pre>
+
+<script>
+  const out = document.getElementById("out");
+  const realLog = console.log;
+  console.log = function (...args) {
+    realLog.apply(console, args);
+    out.textContent += args.map(a => typeof a === "string" ? a : JSON.stringify(a)).join(" ") + "\n";
+  };
+  document.querySelectorAll("button[data-f]").forEach(btn => {
+    btn.onclick = () => {
+      out.textContent = "";
+      const s = document.createElement("script");
+      s.src = btn.dataset.f + "?t=" + Date.now();
+      document.body.appendChild(s);
+    };
+  });
+  document.getElementById("clear").onclick = () => out.textContent = "";
+</script>
+</body>
+</html>
